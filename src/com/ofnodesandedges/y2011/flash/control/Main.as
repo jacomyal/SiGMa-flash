@@ -21,7 +21,7 @@ package com.ofnodesandedges.y2011.flash.control{
 			
 			ForceAtlas.initAlgo();
 			
-			_fpsCounter = FPSCounter(s.addChild(new FPSCounter(0xE0E0FF,0x000080,0xE0E0FF)));
+			_fpsCounter = FPSCounter(s.addChild(new FPSCounter(0xFFE0E0,0x800000,0xFFE0E0)));
 			_fpsCounter.x = 5;
 			_fpsCounter.y = 5;
 			
