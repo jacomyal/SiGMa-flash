@@ -31,7 +31,7 @@ package com.ofnodesandedges.y2011.flash.control{
 			_fpsCounter.x = 5;
 			_fpsCounter.y = 5;
 			
-			var filePath:String = "../graphs/erdos_clusters.gexf";
+			var filePath:String = "../graphs/les_miserables.gexf";
 			var fileLoader:FileLoader;
 			
 			// Set file path:
