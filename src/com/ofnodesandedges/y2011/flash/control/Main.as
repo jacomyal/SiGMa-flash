@@ -28,8 +28,8 @@ package com.ofnodesandedges.y2011.flash.control{
 			
 			// Initialize the FPSCounter:
 			_fpsCounter = FPSCounter(s.addChild(new FPSCounter(0xE0E0E0,0x000000,0xE0E0E0)));
-			_fpsCounter.x = 5;
-			_fpsCounter.y = 5;
+			_fpsCounter.x = stage.stageWidth-_fpsCounter.width;
+			_fpsCounter.y = stage.stageHeight-_fpsCounter.height;
 			
 			var filePath:String = "../graphs/les_miserables.gexf";
 			var fileLoader:FileLoader;
@@ -49,14 +49,22 @@ package com.ofnodesandedges.y2011.flash.control{
 				// TODO: More loaders.
 			}
 			
+			stage.addEventListener(Event.RESIZE,resize);
 			fileLoader.addEventListener(FileLoader.FILE_PARSED,fileParsed);
 			fileLoader.openFile(filePath);
+		}
+		
+		private function resize(e:Event):void{
+			_fpsCounter.x = stage.stageWidth-_fpsCounter.width;
+			_fpsCounter.y = stage.stageHeight-_fpsCounter.height;
+			
+			CoreControler.resize(stage.stageWidth,stage.stageHeight);
 		}
 		
 		private function fileParsed(e:Event):void{
 			// Initialization sample:
 			CircularLayout.apply(500,0,0);
-			ForceAtlas.initAlgo();
+			//ForceAtlas.initAlgo();
 			
 			CoreControler.displayNodes = true;
 			CoreControler.displayEdges = true;
