@@ -23,7 +23,10 @@
 package com.ofnodesandedges.y2011.flash.control{
 	
 	import com.ofnodesandedges.y2011.core.control.CoreControler;
+	import com.ofnodesandedges.y2011.core.data.Graph;
+	import com.ofnodesandedges.y2011.core.data.Node;
 	import com.ofnodesandedges.y2011.core.drawing.GraphDrawer;
+	import com.ofnodesandedges.y2011.core.interaction.Glasses;
 	import com.ofnodesandedges.y2011.core.interaction.InteractionControler;
 	import com.ofnodesandedges.y2011.core.layout.CircularLayout;
 	import com.ofnodesandedges.y2011.core.layout.RotationLayout;
@@ -50,8 +53,8 @@ package com.ofnodesandedges.y2011.flash.control{
 			
 			// Initialize the FPSCounter:
 			_fpsCounter = FPSCounter(s.addChild(new FPSCounter(0xE0E0E0,0x000000,0xE0E0E0)));
-			_fpsCounter.x = stage.stageWidth-_fpsCounter.width;
-			_fpsCounter.y = stage.stageHeight-_fpsCounter.height;
+			_fpsCounter.x = 5;
+			_fpsCounter.y = 5;
 			
 			var filePath:String = "../graphs/les_miserables.gexf";
 			var fileLoader:FileLoader;
@@ -76,17 +79,12 @@ package com.ofnodesandedges.y2011.flash.control{
 			fileLoader.openFile(filePath);
 		}
 		
-		private function resize(e:Event):void{
-			_fpsCounter.x = stage.stageWidth-_fpsCounter.width;
-			_fpsCounter.y = stage.stageHeight-_fpsCounter.height;
-			
-			CoreControler.resize(stage.stageWidth,stage.stageHeight);
-		}
-		
 		private function fileParsed(e:Event):void{
 			// Initialization sample:
 			CircularLayout.apply(500,0,0);
-			//ForceAtlas.initAlgo();
+			ForceAtlas.initAlgo();
+			
+			CoreControler.addGraphicEffect(Glasses.fishEyeDisplay);
 			
 			CoreControler.displayNodes = true;
 			CoreControler.displayEdges = true;
@@ -94,11 +92,15 @@ package com.ofnodesandedges.y2011.flash.control{
 			
 			CoreControler.minDisplaySize = 1;
 			CoreControler.maxDisplaySize = 5;
-			CoreControler.textThreshold = 5;
+			CoreControler.textThreshold = 10;
 			
 			GraphDrawer.setEdgesColor(0x888888);
 			GraphDrawer.setLabelsColor(0x444444);
 			GraphDrawer.fontName = "Helvetica";
+		}
+		
+		private function resize(e:Event):void{
+			CoreControler.resize(stage.stageWidth,stage.stageHeight);
 		}
 	}
 }
