@@ -273,7 +273,7 @@ package com.ofnodesandedges.y2011.flash.loading{
 					}
 				}
 				
-				Graph.addNode(node);
+				Graph.pushNode(node);
 				nodesCounter++;
 			}
 			
@@ -310,7 +310,7 @@ package com.ofnodesandedges.y2011.flash.loading{
 					edge = new Edge(id,xmlCursor.@source,xmlCursor.@target);
 					edge.type = edgeAttributes["edgeType"] ? edgeAttributes["edgeType"] : EdgeDrawer.NONE;
 					
-					Graph.addEdge(edge);
+					Graph.pushEdge(edge);
 					
 					edgesCounter++;
 				}
